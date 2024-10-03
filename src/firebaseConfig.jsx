@@ -3,17 +3,19 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA_wFYHUSkW4fvcwM-w8fFdd5OUKttflxM",
-  authDomain: "encryptdecrypt-f8a7a.firebaseapp.com",
-  projectId: "encryptdecrypt-f8a7a",
-  storageBucket: "encryptdecrypt-f8a7a.appspot.com",
-  messagingSenderId: "1016244687550",
-  appId: "1:1016244687550:web:94dc0a6779bb5051cb04ef",
-  measurementId: "G-7QB1D0S64L"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export { auth };
+export { app, auth };

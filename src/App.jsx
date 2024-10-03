@@ -1,24 +1,59 @@
 // src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebaseConfig';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import EncryptDecrypt from './components/EncryptDecrypt';
+import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
+import EncryptDecrypt from './pages/EncryptDecrypt';
 import ForgotPassword from './pages/ForgotPassword';
-import './App.css'; // Assuming you have some global styles
+import ResetPassword from './pages/ResetPassword';
+import ProtectedRoute from './components/ProtectedRoute';
+import NotFound from './pages/NotFound';
+import Home from './pages/Home'; // Import the Home component
 
 const App = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // State to handle loading
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false); // Set loading to false once user state is determined
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Optional: show a loading indicator while checking auth state
+  }
+
   return (
     <Router>
-      <Navbar />
+      <div className="pb-10">
+        <Navbar user={user} /> {/* Pass user state to Navbar */}
+      </div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
+        <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+        <Route 
+          path="/encrypt-decrypt" 
+          element={
+            <ProtectedRoute user={user}>
+              <EncryptDecrypt />
+            </ProtectedRoute>
+          } 
+        />
+
+        {/* Route for the Home page */}
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" replace />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
