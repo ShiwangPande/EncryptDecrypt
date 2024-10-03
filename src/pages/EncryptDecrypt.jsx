@@ -15,7 +15,6 @@ const EncryptDecrypt = () => {
   const [messageStatus, setMessageStatus] = useState('');
 
   useEffect(() => {
-    // Set up Firebase auth state listener
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUserDetails(user);
       if (user) {
@@ -88,17 +87,18 @@ const EncryptDecrypt = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center   bg-gray-100 p-4">
+    
       <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Encrypt & Decrypt Messages</h1>
       
-      <div className="bg-white shadow-lg rounded-lg p-6 mb-4 w-80 text-center">
+      <div className="bg-white shadow-lg rounded-lg p-6 mb-4 w-full max-w-md  text-center">
         <h2 className="text-xl font-semibold mb-2">Welcome, {userDetails?.email}</h2>
-      </div>
       {messageStatus && <p className="mt-4 text-red-600">{messageStatus}</p>}
+      </div>
 
-      <div className="container mx-auto mt-10 p-5 border rounded shadow-lg bg-white">
+      <div className="container mx-auto mt-10 p-5 border rounded shadow-lg bg-white w-full max-w-3xl">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Encryption & Decryption</h1>
-        <div className='flex flex-row justify-between space-x-4'> 
+        <div className='flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4'> 
           {/* Encryption Section */}
           <div className="mb-8 flex-1">
             <h2 className="text-xl font-semibold mb-2">Encryption</h2>
@@ -128,7 +128,7 @@ const EncryptDecrypt = () => {
               <option value="MD5">MD5</option>
             </select>
             <button 
-              className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-300"
+              className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-300 w-full"
               onClick={encryptMessage}
             >
               Encrypt
@@ -157,7 +157,7 @@ const EncryptDecrypt = () => {
               />
             )}
             <button 
-              className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition duration-300"
+              className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition duration-300 w-full"
               onClick={decryptMessage}
             >
               Decrypt

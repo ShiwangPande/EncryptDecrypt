@@ -27,14 +27,14 @@ const App = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Optional: show a loading indicator while checking auth state
+    return <div className="flex justify-center items-center h-screen">Loading...</div>; // Center loading indicator
   }
 
   return (
     <Router>
-      <div className="pb-10">
-        <Navbar user={user} /> {/* Pass user state to Navbar */}
-      </div>
+  
+        <Navbar user={user} handleLogout={() => { setUser(null); }} /> {/* Pass user state and handleLogout to Navbar */}
+  
       <Routes>
         <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
         <Route path="/signup" element={<SignUp />} />
