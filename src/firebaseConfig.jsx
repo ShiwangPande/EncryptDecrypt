@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA_wFYHUSkW4fvcwM-w8fFdd5OUKttflxM",
-  authDomain: "encryptdecrypt-f8a7a.firebaseapp.com",
-  projectId: "encryptdecrypt-f8a7a",
-  storageBucket: "encryptdecrypt-f8a7a.appspot.com",
-  messagingSenderId: "1016244687550",
-  appId: "1:1016244687550:web:94dc0a6779bb5051cb04ef",
-  measurementId: "G-7QB1D0S64L"
+  apiKey: "AIzaSyCmzNWzP1MKuVVQ4miAWiQQjoQvwQHKjdk",
+  authDomain: "digital-right-management.firebaseapp.com",
+  projectId: "digital-right-management",
+  storageBucket: "digital-right-management.appspot.com",
+  messagingSenderId: "945717893504",
+  appId: "1:945717893504:web:b4826ae753d801955bc965",
+  measurementId: "G-KTSFL2QVMV"
 };
 
 // Initialize Firebase
