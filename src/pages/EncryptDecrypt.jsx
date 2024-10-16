@@ -89,7 +89,7 @@ const EncryptDecrypt = () => {
   return (
     <div className="flex flex-col items-center justify-center   bg-gray-100 p-4">
     
-      <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Encrypt & Decrypt Messages</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Digital Rights Management</h1>
       
       <div className="bg-white shadow-lg rounded-lg p-6 mb-4 w-full max-w-md  text-center">
         <h2 className="text-xl font-semibold mb-2">Welcome, {userDetails?.email}</h2>
@@ -189,4 +189,4 @@ const EncryptDecrypt = () => {
   );
 };
 
-export default EncryptDecrypt;
+export default EncryptDecrypt;
